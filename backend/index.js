@@ -29,7 +29,7 @@ app.use(
       methods: ["GET", "POST", "PUT", "DELETE"],
       credentials: true,
     })
-  );
+);
 
 
 app.listen(PORT, () => {
