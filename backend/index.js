@@ -6,7 +6,7 @@ require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 const MONGO_URL = process.env.MONGO_URL;
-const PORT = 3000
+const PORT = 4000
 
 mongoose
   .connect(MONGO_URL)
@@ -17,19 +17,19 @@ mongoose
 });
 
 
+app.use(
+    cors({
+      origin: ["http://localhost:3000"],
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true,
+    })
+);
 app.use(cookieParser());
 
 app.use(express.json());
 
 app.use("/", authRoute);
 
-app.use(
-    cors({
-      origin: ["http://localhost:4000"],
-      methods: ["GET", "POST", "PUT", "DELETE"],
-      credentials: true,
-    })
-);
 
 
 app.listen(PORT, () => {
